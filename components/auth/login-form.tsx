@@ -1,27 +1,31 @@
 'use client';
 import { useFormik } from 'formik';
-import { Input } from '@/components/ui/input';
 import { loginSchema } from '@/lib/schemas';
+import InputField from '@/components/common/InputField';
 
 const LoginForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: loginSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+    },
+  });
+
   const { handleSubmit, handleChange, values, handleBlur, touched, errors } =
-    useFormik({
-      initialValues: {
-        email: '',
-        password: '',
-      },
-
-      validationSchema: loginSchema,
-
-      onSubmit: async (values) => {
-        console.log(values);
-      },
-    });
+    formik;
   return (
     <form onSubmit={handleSubmit}>
-      <div className="my-4 space-y-1">
-        <label htmlFor="email">Email</label>
-        <Input
+      <InputField
+        htmlFor="email"
+        label="Email"
+        touched={touched.email}
+        errors={errors.email}
+      >
+        <InputField.TextInput
           id="email"
           placeholder="Enter your email"
           type="email"
@@ -29,16 +33,16 @@ const LoginForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.email}
-          className="block border border-gray-300 rounded-md w-full p-2"
         />
-        {touched.email && errors.email ? (
-          <div className="text-red-500 text-sm">{errors.email}</div>
-        ) : null}
-      </div>
+      </InputField>
 
-      <div className="my-4 space-y-1">
-        <label htmlFor="password">Password</label>
-        <Input
+      <InputField
+        htmlFor="password"
+        label="Password"
+        touched={touched.password}
+        errors={errors.password}
+      >
+        <InputField.PasswordInput
           id="password"
           placeholder="Enter your password"
           type="password"
@@ -46,12 +50,8 @@ const LoginForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.password}
-          className="block border border-gray-300 rounded-md w-full p-2"
         />
-        {touched.password && errors.password ? (
-          <div className="text-red-500 text-sm">{errors.password}</div>
-        ) : null}
-      </div>
+      </InputField>
 
       <button
         type="submit"

@@ -1,29 +1,36 @@
 'use client';
 
 import { useFormik } from 'formik';
-import { Input } from '@/components/ui/input';
 import { registerSchema } from '@/lib/schemas';
+import InputField from '../common/InputField';
 
 const RegisterForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+
+    validationSchema: registerSchema,
+
+    onSubmit: async (values) => {
+      console.log(values);
+    },
+  });
+
   const { handleSubmit, handleChange, values, handleBlur, touched, errors } =
-    useFormik({
-      initialValues: {
-        name: '',
-        email: '',
-        password: '',
-      },
+    formik;
 
-      validationSchema: registerSchema,
-
-      onSubmit: async (values) => {
-        console.log(values);
-      },
-    });
   return (
     <form onSubmit={handleSubmit}>
-      <div className="my-4">
-        <label htmlFor="name">Name</label>
-        <Input
+      <InputField
+        htmlFor="name"
+        label="Name"
+        touched={touched.name}
+        errors={errors.name}
+      >
+        <InputField.TextInput
           id="name"
           placeholder="Enter your name"
           type="text"
@@ -31,16 +38,16 @@ const RegisterForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.name}
-          className="block border border-gray-300 rounded-md w-full p-2"
         />
-        {touched.name && errors.name ? (
-          <div className="text-red-500 text-sm">{errors.name}</div>
-        ) : null}
-      </div>
+      </InputField>
 
-      <div className="my-4">
-        <label htmlFor="email">Email</label>
-        <Input
+      <InputField
+        htmlFor="email"
+        label="Email"
+        touched={touched.email}
+        errors={errors.email}
+      >
+        <InputField.TextInput
           id="email"
           placeholder="Enter your email"
           type="email"
@@ -48,16 +55,16 @@ const RegisterForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.email}
-          className="block border border-gray-300 rounded-md w-full p-2"
         />
-        {touched.email && errors.email ? (
-          <div className="text-red-500 text-sm">{errors.email}</div>
-        ) : null}
-      </div>
+      </InputField>
 
-      <div className="my-4">
-        <label htmlFor="password">Password</label>
-        <Input
+      <InputField
+        htmlFor="password"
+        label="Password"
+        touched={touched.password}
+        errors={errors.password}
+      >
+        <InputField.PasswordInput
           id="password"
           placeholder="Enter your password"
           type="password"
@@ -65,12 +72,8 @@ const RegisterForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.password}
-          className="block border border-gray-300 rounded-md w-full p-2"
         />
-        {touched.password && errors.password ? (
-          <div className="text-red-500 text-sm">{errors.password}</div>
-        ) : null}
-      </div>
+      </InputField>
 
       <button
         type="submit"
