@@ -1,7 +1,13 @@
 'use client';
 
-import { registerSchema } from '@/lib/schemas';
+import { toast } from 'sonner';
+import { useMutation } from '@tanstack/react-query';
+
 import VForm from '@/components/common/VForm';
+import { Button } from '@/components/ui/button';
+
+import { register } from '@/lib/api/auth/auth-api';
+import { registerSchema } from '@/lib/schemas';
 
 const RegisterForm = () => {
   const initialValues = {
@@ -10,9 +16,25 @@ const RegisterForm = () => {
     password: '',
   };
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: register,
+    onSuccess: (data) => {
+      toast.success(data?.message);
+    },
+    onError: (error: unknown) => {
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as {
+          response?: { data?: { errorMessage?: string } };
+        };
+        toast.error(axiosError.response?.data?.errorMessage);
+      }
+    },
+  });
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (values: Record<string, any>) => {
-    console.log(values);
+    const { name, email, password } = values;
+    mutate({ name, email, password });
   };
 
   return (
@@ -41,12 +63,9 @@ const RegisterForm = () => {
         placeholder="Enter your password"
       />
 
-      <button
-        type="submit"
-        className="bg-green-500 text-white py-2 px-4 w-full rounded-md"
-      >
-        Submit
-      </button>
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? 'Signing up...' : 'Sign up'}
+      </Button>
     </VForm>
   );
 };
