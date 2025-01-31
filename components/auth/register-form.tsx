@@ -1,79 +1,45 @@
 'use client';
 
-import { useFormik } from 'formik';
 import { registerSchema } from '@/lib/schemas';
-import InputField from '../common/InputField';
+import VForm from '@/components/common/VForm';
 
 const RegisterForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+  };
 
-    validationSchema: registerSchema,
-
-    onSubmit: async (values) => {
-      console.log(values);
-    },
-  });
-
-  const { handleSubmit, handleChange, values, handleBlur, touched, errors } =
-    formik;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (values: Record<string, any>) => {
+    console.log(values);
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputField
-        htmlFor="name"
+    <VForm
+      initialValues={initialValues}
+      validationSchema={registerSchema}
+      onSubmit={handleSubmit}
+    >
+      <VForm.VTextInput
         label="Name"
-        touched={touched.name}
-        errors={errors.name}
-      >
-        <InputField.TextInput
-          id="name"
-          placeholder="Enter your name"
-          type="text"
-          name="name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.name}
-        />
-      </InputField>
+        name="name"
+        placeholder="Full Name"
+        type="text"
+      />
 
-      <InputField
-        htmlFor="email"
+      <VForm.VTextInput
         label="Email"
-        touched={touched.email}
-        errors={errors.email}
-      >
-        <InputField.TextInput
-          id="email"
-          placeholder="Enter your email"
-          type="email"
-          name="email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.email}
-        />
-      </InputField>
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+      />
 
-      <InputField
-        htmlFor="password"
+      <VForm.VPasswordInput
         label="Password"
-        touched={touched.password}
-        errors={errors.password}
-      >
-        <InputField.PasswordInput
-          id="password"
-          placeholder="Enter your password"
-          type="password"
-          name="password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.password}
-        />
-      </InputField>
+        name="password"
+        placeholder="Enter your password"
+      />
 
       <button
         type="submit"
@@ -81,7 +47,7 @@ const RegisterForm = () => {
       >
         Submit
       </button>
-    </form>
+    </VForm>
   );
 };
 export default RegisterForm;

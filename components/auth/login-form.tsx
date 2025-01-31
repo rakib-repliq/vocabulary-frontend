@@ -1,57 +1,36 @@
 'use client';
-import { useFormik } from 'formik';
+
 import { loginSchema } from '@/lib/schemas';
-import InputField from '@/components/common/InputField';
+import VForm from '@/components/common/VForm';
 
 const LoginForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      console.log(values);
-    },
-  });
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (values: Record<string, any>) => {
+    console.log(values);
+  };
 
-  const { handleSubmit, handleChange, values, handleBlur, touched, errors } =
-    formik;
   return (
-    <form onSubmit={handleSubmit}>
-      <InputField
-        htmlFor="email"
+    <VForm
+      initialValues={initialValues}
+      validationSchema={loginSchema}
+      onSubmit={handleSubmit}
+    >
+      <VForm.VTextInput
         label="Email"
-        touched={touched.email}
-        errors={errors.email}
-      >
-        <InputField.TextInput
-          id="email"
-          placeholder="Enter your email"
-          type="email"
-          name="email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.email}
-        />
-      </InputField>
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+      />
 
-      <InputField
-        htmlFor="password"
+      <VForm.VPasswordInput
         label="Password"
-        touched={touched.password}
-        errors={errors.password}
-      >
-        <InputField.PasswordInput
-          id="password"
-          placeholder="Enter your password"
-          type="password"
-          name="password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.password}
-        />
-      </InputField>
+        name="password"
+        placeholder="Enter your password"
+      />
 
       <button
         type="submit"
@@ -59,7 +38,7 @@ const LoginForm = () => {
       >
         Submit
       </button>
-    </form>
+    </VForm>
   );
 };
 export default LoginForm;
