@@ -8,13 +8,18 @@ import {
   TrendingUp,
   Activity,
 } from 'lucide-react';
-import { MetricCard } from '@/components/dashboard/admin-dashboard/card/MetricCard';
-import { ChartCard } from '@/components/dashboard/admin-dashboard/card/ChartCard';
-import { DataTable } from '@/components/dashboard/admin-dashboard/card/DataTable';
-import { mockUserGrowth, mockLessonEngagement } from '@/data/mock/charts';
-import { mockUsers } from '@/data/mock/users';
-import { mockLessons } from '@/data/mock/lessons';
-import { mockVocabulary } from '@/data/mock/vocabulary';
+import {
+  ChartCard,
+  DataTable,
+  MetricCard,
+} from '@/components/dashboard/admin-dashboard/card';
+import {
+  mockUserGrowth,
+  mockLessonEngagement,
+  mockUsers,
+  mockLessons,
+  mockVocabulary,
+} from '@/data';
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);

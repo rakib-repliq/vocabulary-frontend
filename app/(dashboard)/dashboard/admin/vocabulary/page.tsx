@@ -1,9 +1,9 @@
 'use client';
 
 import { Book } from 'lucide-react';
-import { DataTable } from '@/components/dashboard/admin-dashboard/card/DataTable';
-import { PageHeader } from '@/components/dashboard/admin-dashboard/layout/PageHeader';
-import { mockVocabulary } from '@/data/mock/vocabulary';
+import { DataTable } from '@/components/dashboard/admin-dashboard/card';
+import { PageHeader } from '@/components/dashboard/admin-dashboard/layout';
+import { mockVocabulary } from '@/data';
 
 export default function VocabularyPage() {
   const handleAddWord = () => {

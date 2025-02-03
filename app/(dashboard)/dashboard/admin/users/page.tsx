@@ -1,23 +1,14 @@
 'use client';
 
 import { Users } from 'lucide-react';
-import { DataTable } from '@/components/dashboard/admin-dashboard/card/DataTable';
-import { PageHeader } from '@/components/dashboard/admin-dashboard/layout/PageHeader';
-import { mockUsers } from '@/data/mock/users';
+import { DataTable } from '@/components/dashboard/admin-dashboard/card';
+import { PageHeader } from '@/components/dashboard/admin-dashboard/layout';
+import { mockUsers } from '@/data';
 
 export default function UsersPage() {
-  const handleAddUser = () => {
-    console.log('Add user clicked');
-  };
-
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="User Management"
-        icon={Users}
-        buttonLabel="Add New User"
-        onButtonClick={handleAddUser}
-      />
+      <PageHeader title="User Management" icon={Users} />
 
       <div className="space-y-4">
         <DataTable

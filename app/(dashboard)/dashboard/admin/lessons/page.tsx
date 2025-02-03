@@ -1,9 +1,9 @@
 'use client';
 
 import { BookOpen } from 'lucide-react';
-import { DataTable } from '@/components/dashboard/admin-dashboard/card/DataTable';
-import { PageHeader } from '@/components/dashboard/admin-dashboard/layout/PageHeader';
-import { mockLessons } from '@/data/mock/lessons';
+import { DataTable } from '@/components/dashboard/admin-dashboard/card';
+import { PageHeader } from '@/components/dashboard/admin-dashboard/layout';
+import { mockLessons } from '@/data';
 
 export default function LessonsPage() {
   const handleAddLesson = () => {
