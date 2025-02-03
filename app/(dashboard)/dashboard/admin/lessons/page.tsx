@@ -34,6 +34,7 @@ export default function LessonsPage() {
             },
           ]}
           data={mockLessons}
+          itemsPerPage={14}
         />
       </div>
     </div>

@@ -11,6 +11,7 @@ interface NavLinkProps {
   label: string;
   onClick?: () => void;
   collapsed?: boolean;
+  preventDefault?: boolean;
 }
 
 export const NavLink: React.FC<NavLinkProps> = ({
@@ -19,6 +20,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
   label,
   onClick,
   collapsed = false,
+  preventDefault,
 }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -28,7 +30,9 @@ export const NavLink: React.FC<NavLinkProps> = ({
       href={href}
       onClick={(e) => {
         if (onClick) {
-          e.preventDefault();
+          if (preventDefault !== false) {
+            e.preventDefault();
+          }
           onClick();
         }
       }}

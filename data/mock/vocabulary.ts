@@ -15,5 +15,4 @@ export const mockVocabulary = [
     usageCount: 234,
     lastUsed: '2024-03-09',
   },
-  // Add more mock vocabulary as needed
 ];

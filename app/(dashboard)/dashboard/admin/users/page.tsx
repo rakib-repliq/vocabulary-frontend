@@ -33,6 +33,7 @@ export default function UsersPage() {
             },
           ]}
           data={mockUsers}
+          itemsPerPage={14}
         />
       </div>
     </div>

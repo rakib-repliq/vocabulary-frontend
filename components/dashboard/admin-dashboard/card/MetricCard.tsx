@@ -1,5 +1,5 @@
 import React from 'react';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 interface MetricCardProps {
   title: string;
@@ -53,7 +53,8 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <h3 className="text-2xl font-bold text-gray-900 mt-2">{value}</h3>
           {trend && (
-            <p className={`text-sm mt-2 flex items-center gap-1
+            <p
+              className={`text-sm mt-2 flex items-center gap-1
               ${trend.isPositive ? 'text-green-600' : 'text-red-600'}`}
             >
               <span aria-hidden="true">{trend.isPositive ? '↑' : '↓'}</span>

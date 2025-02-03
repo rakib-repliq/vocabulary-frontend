@@ -32,7 +32,7 @@ export function DataTable<T>({
       const bValue = b[sortConfig.key];
 
       if (aValue === bValue) return 0;
-      
+
       const direction = sortConfig.direction === 'asc' ? 1 : -1;
       return aValue < bValue ? -direction : direction;
     });
@@ -43,23 +43,25 @@ export function DataTable<T>({
   const paginatedData = sortedData.slice(startIndex, startIndex + itemsPerPage);
 
   const handleSort = (key: keyof T) => {
-    setSortConfig(current => ({
+    setSortConfig((current) => ({
       key,
-      direction: 
+      direction:
         current.key === key
           ? current.direction === 'asc'
             ? 'desc'
             : current.direction === 'desc'
-              ? null
-              : 'asc'
-          : 'asc'
+            ? null
+            : 'asc'
+          : 'asc',
     }));
   };
 
   const getSortIcon = (key: keyof T) => {
     if (sortConfig.key !== key) return <ChevronsUpDown className="w-4 h-4" />;
-    if (sortConfig.direction === 'asc') return <ChevronUp className="w-4 h-4" />;
-    if (sortConfig.direction === 'desc') return <ChevronDown className="w-4 h-4" />;
+    if (sortConfig.direction === 'asc')
+      return <ChevronUp className="w-4 h-4" />;
+    if (sortConfig.direction === 'desc')
+      return <ChevronDown className="w-4 h-4" />;
     return <ChevronsUpDown className="w-4 h-4" />;
   };
 
@@ -69,7 +71,7 @@ export function DataTable<T>({
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200">
-              {columns.map(column => (
+              {columns.map((column) => (
                 <th
                   key={String(column.key)}
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50"
@@ -86,7 +88,7 @@ export function DataTable<T>({
           <tbody className="divide-y divide-gray-200">
             {paginatedData.map((item, index) => (
               <tr key={index} className="hover:bg-gray-50">
-                {columns.map(column => (
+                {columns.map((column) => (
                   <td
                     key={String(column.key)}
                     className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
@@ -101,11 +103,11 @@ export function DataTable<T>({
           </tbody>
         </table>
       </div>
-      
+
       {totalPages > 1 && (
         <div className="px-6 py-3 flex items-center justify-between border-t border-gray-200">
           <button
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
             className="px-3 py-1 rounded text-sm font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
           >
@@ -115,7 +117,7 @@ export function DataTable<T>({
             Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
             className="px-3 py-1 rounded text-sm font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
           >

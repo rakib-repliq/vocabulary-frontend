@@ -73,6 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   key={item.href}
                   {...item}
                   onClick={() => setMobileOpen(false)}
+                  preventDefault={false}
                 />
               ))}
             </nav>

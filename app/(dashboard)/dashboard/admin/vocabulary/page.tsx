@@ -34,6 +34,7 @@ export default function VocabularyPage() {
             },
           ]}
           data={mockVocabulary}
+          itemsPerPage={14}
         />
       </div>
     </div>
