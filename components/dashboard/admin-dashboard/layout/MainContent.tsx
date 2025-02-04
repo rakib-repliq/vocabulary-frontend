@@ -23,6 +23,7 @@ export const MainContent: React.FC<MainContentProps> = ({
         duration-300
         ease-in-out
         overflow-auto
+        pt-4
       `}
     >
       <div className="p-4 md:p-6">

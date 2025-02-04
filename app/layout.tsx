@@ -4,8 +4,8 @@ import './globals.css';
 import { Toaster } from 'sonner';
 
 import TanstackProvider from '@/providers/TanstackProvider';
-import Navbar from '@/components/layout/navbar/navbar';
-import Footer from '@/components/layout/footer/footer';
+import NavbarWrapper from '@/components/layout/navbar/navbar-wrapper';
+import FooterWrapper from '@/components/layout/footer/footer-wrapper';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -35,9 +35,9 @@ export default function RootLayout({
       >
         <TanstackProvider>
           <Toaster position="top-center" />
-          <Navbar />
+          <NavbarWrapper />
           {children}
-          <Footer />
+          <FooterWrapper />
         </TanstackProvider>
       </body>
     </html>

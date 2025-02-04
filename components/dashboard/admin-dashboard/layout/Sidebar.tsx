@@ -65,7 +65,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
-        <div className="flex flex-col h-full pt-20">
+        <div className="flex flex-col h-full pt-16">
           <div className="flex-1 overflow-y-auto px-4">
             <nav className="space-y-4">
               {navItems.map((item) => (
