@@ -3,9 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isDashboard = pathname?.startsWith('/dashboard');
+
+  if (isDashboard) return null;
 
   const navItems = [
     { label: 'Dashboard', href: '/dashboard/admin' },
