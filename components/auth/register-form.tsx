@@ -63,7 +63,11 @@ const RegisterForm = () => {
         placeholder="Enter your password"
       />
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button
+        type="submit"
+        className="w-full py-6 text-lg font-semibold"
+        disabled={isPending}
+      >
         {isPending ? 'Signing up...' : 'Sign up'}
       </Button>
     </VForm>

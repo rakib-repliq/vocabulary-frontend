@@ -62,7 +62,11 @@ const LoginForm = () => {
         </div>
       )} */}
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button
+        type="submit"
+        className="w-full py-6 text-lg font-semibold"
+        disabled={isPending}
+      >
         {isPending ? 'Logging in...' : 'Login'}
       </Button>
     </VForm>

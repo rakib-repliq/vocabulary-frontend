@@ -8,7 +8,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Dashboard', href: '/dashboard' },
+    { label: 'Dashboard', href: '/dashboard/admin' },
     { label: 'Lessons', href: '/lessons' },
     { label: 'Login', href: '/login' },
     { label: 'Register', href: '/register' },
